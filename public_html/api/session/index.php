@@ -1,14 +1,37 @@
 <?php
 require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
-require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
+
+$reply = new stdClass();
+$reply->status = 200;
+$reply->data = null;
+
+try {
 
 
+	//verify the HTTP method being used
+	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
-//verify the session, start if not active
-if(session_status() !== PHP_SESSION_ACTIVE) {
-	session_start();
+	if($method === "GET") {
+
+		//verify the session, start if not active
+		if(session_status() !== PHP_SESSION_ACTIVE) {
+			session_start();
+		}
+
+		setXsrfCookie();
+	} else {
+		throw (new \InvalidArgumentException("attempting to brew coffee with a teapot",418 ));
+	}
+
+} catch(\Exception  | \TypeError $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
 }
 
-setXsrfCookie();
-
+header("Content-type: application/json");
+if($reply->data === null) {
+	unset($reply->data);
+}
+//encode and return reply to front end caller
+echo json_encode($reply);
 

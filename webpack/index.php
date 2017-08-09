@@ -1,8 +1,3 @@
-<?php
-if(session_status() !== PHP_SESSION_ACTIVE) {
-	session_start();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,6 +9,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 		<title>Angular 4 Service Example</title>
 	</head>
 	<body>
-		<angular4-example>Loading&hellip;</angular4-example>
+		<ng-config>Loading&hellip;</ng-config>
 	</body>
 </html>

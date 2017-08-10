@@ -19,8 +19,12 @@ try {
 		}
 
 		setXsrfCookie();
+		$reply->data = new stdClass();
+		$reply->data->name = "Arlo Kt'zik";
+		$reply->data->rank = "Senator";
+		$reply->data->party = "Fuzzy";
 	} else {
-		throw (new \InvalidArgumentException("attempting to brew coffee with a teapot",418 ));
+		throw (new \InvalidArgumentException("attempting to brew coffee with a teapot", 418));
 	}
 
 } catch(\Exception  | \TypeError $exception) {

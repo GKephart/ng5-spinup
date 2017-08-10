@@ -3,6 +3,7 @@ var webpackMerge = require("webpack-merge");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var commonConfig = require("./webpack.common.js");
 var helpers = require("./helpers");
+var targetUrl = require("./target.js");
 
 module.exports = webpackMerge(commonConfig, {
 	devtool: "cheap-module-eval-source-map",
@@ -24,7 +25,7 @@ module.exports = webpackMerge(commonConfig, {
 		stats: "minimal",
 		proxy: {
 			"/api": {
-				target: "https://bootcamp-coders.cnm.edu/~dmcdonald21/sesh-with-php/public_html",
+				target: targetUrl(),
 				secure: false
 			}
 		}

@@ -2,10 +2,11 @@ import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {BaseService} from "./base.service";
+import {Politician} from "../classes/politician";
 import {Status} from "../classes/status";
 
 @Injectable()
-export class SessionServive extends BaseService {
+export class SessionService extends BaseService {
 
 	constructor(protected http: Http) {
 		super(http);
@@ -13,8 +14,8 @@ export class SessionServive extends BaseService {
 
 	private sessionUrl = "api/session/";
 
-	setHead() : Observable <Status> {
-		return (this.http.head(this.sessionUrl)
+	getPolitician() : Observable <Politician> {
+		return (this.http.get(this.sessionUrl)
 			.map(this.extractMessage)
 			.catch(this.handleError));
 	}

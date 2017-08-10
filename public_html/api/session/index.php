@@ -11,7 +11,7 @@ try {
 	//verify the HTTP method being used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
-	if($method === "HEAD") {
+	if($method === "HEAD" || $method === "GET") {
 
 		//verify the session, start if not active
 		if(session_status() !== PHP_SESSION_ACTIVE) {
@@ -34,4 +34,3 @@ if($reply->data === null) {
 }
 //encode and return reply to front end caller
 echo json_encode($reply);
-

@@ -24,7 +24,7 @@ module.exports = webpackMerge(commonConfig, {
 		stats: "minimal",
 		proxy: {
 			"/api": {
-				target: "https://bootcamp-coders.cnm.edu/~dmcdonald21/ng4-example/public_html",
+				target: "https://bootcamp-coders.cnm.edu/~dmcdonald21/sesh-with-php/public_html",
 				secure: false
 			}
 		}

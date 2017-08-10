@@ -16,7 +16,7 @@ export class SessionService extends BaseService {
 
 	getPolitician() : Observable <Politician> {
 		return (this.http.get(this.sessionUrl)
-			.map(this.extractMessage)
+			.map(this.extractData)
 			.catch(this.handleError));
 	}
 }

@@ -1,22 +1,20 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
-import {BaseService} from "./base.service";
-import {Politician} from "../classes/politician";
+import {HttpClient} from "@angular/common/http";
 import {Status} from "../classes/status";
 
 @Injectable()
-export class SessionService extends BaseService {
 
-	constructor(protected http: Http) {
-		super(http);
+
+export class SessionService {
+
+
+	constructor(protected http:HttpClient) {}
+	status : Status = null;
+
+	private sessionUrl = "api/earl-grey/";
+
+	setSession() {
+		this.sessionService.setSession().subscribe(status => this.status = status);
 	}
 
-	private sessionUrl = "api/session/";
-
-	getPolitician() : Observable <Politician> {
-		return (this.http.get(this.sessionUrl)
-			.map(this.extractData)
-			.catch(this.handleError));
-	}
 }

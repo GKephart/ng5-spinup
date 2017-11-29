@@ -6,7 +6,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppComponent} from "./app.component";
 import {allAppComponents, appRoutingProviders, routing} from "./app.routes";
 import {JwtModule} from "@auth0/angular-jwt";
-
+``
 
 
 const moduleDeclarations = [AppComponent];
